@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Patatap Clone</title>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="patatap.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="paper-full.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.15/howler.js"></script>
+		<script type="text/paperscript" canvas="myCanvas">
+
+			var keyData = {
+				q: {
+					sound: new Howl({
+			  			src: ['sounds/bubbles.mp3']
+					}),
+					color: '#A593E0' 	
+				},
+
+				w: {
+					sound: new Howl({
+			  			src: ['sounds/clay.mp3']
+					}),
+					color: '#F6B352'	
+				},
+
+				e: {
+					sound: new Howl({
+			  			src: ['sounds/confetti.mp3']
+					}),
+					color: '#8CD790'	
+				},
+
+				r: {
+					sound: new Howl({
+			  			src: ['sounds/corona.mp3']
+					}),
+					color: '#F16B6F'	
+				},
+
+				t: {
+					sound: new Howl({
+			  			src: ['sounds/dotted-spiral.mp3']
+					}),
+					color: '#F16B6F'	
+				},
+
+				y: {
+					sound: new Howl({
+			  			src: ['sounds/flash-1.mp3']
+					}),
+					color: '#f9d423'	
+				},
+
+				u: {
+					sound: new Howl({
+			  			src: ['sounds/flash-2.mp3']
+					}),
+					color: '#eb9f9f'	
+				},
+
+				i: {
+					sound: new Howl({
+			  			src: ['sounds/flash-3.mp3']
+					}),
+					color: '#d62a9d'	
+				},
+
+				o: {
+					sound: new Howl({
+						src: ['sounds/glimmer.mp3']
+					}),
+					color: '#7f9eb2'	
+				},
+
+				p: {
+					sound: new Howl({
+			  			src: ['sounds/moon.mp3']
+					}),
+					color: '#f8ecc9'	
+				},
+
+				a: {
+					sound: new Howl({
+			  			src: ['sounds/pinwheel.mp3']
+					}),
+					color: '#cbe86b'	
+				},
+
+				s: {
+					sound: new Howl({
+			  			src: ['sounds/piston-1.mp3']
+					}),
+					color: '#c6e5d9'	
+				},
+
+				d: {
+					sound: new Howl({
+			  			src: ['sounds/piston-2.mp3']
+					}),
+					color: '#f349eb'	
+				},
+
+				f: {
+					sound: new Howl({
+			  			src: ['sounds/prism-1.mp3']
+					}),
+					color: '#c8c8a9'	
+				},
+
+				g: {
+					sound: new Howl({
+			  			src: ['sounds/prism-2.mp3']
+					}),
+					color: '#f39c12'
+				},
+
+				h: {
+					sound: new Howl({
+			  			src: ['sounds/prism-3.mp3']
+					}),
+					color: '#d35400'
+				},
+
+				j: {
+					sound: new Howl({
+			  			src: ['sounds/splits.mp3']
+					}),
+					color: '#1abc9c'
+				},
+
+				k: {
+					sound: new Howl({
+			  			src: ['sounds/squiggle.mp3']
+					}),
+					color: '#2ecc71'
+				},
+
+				l: {
+					sound: new Howl({
+			  			src: ['sounds/strike.mp3']
+					}),
+					color: '#3498db'
+				},
+
+				z: {
+					sound: new Howl({
+			  			src: ['sounds/suspension.mp3']
+					}),
+					color: '#9b59b6'
+				},
+
+				x: {
+					sound: new Howl({
+			  			src: ['sounds/timer.mp3']
+					}),
+					color: '#34495e'
+				},
+
+				c: {
+					sound: new Howl({
+			  			src: ['sounds/ufo.mp3']
+					}),
+					color: '#16a085'
+				},
+
+				v: {
+					sound: new Howl({
+			  			src: ['sounds/veil.mp3']
+					}),
+					color: '#27ae60'
+				},
+
+				b: {
+					sound: new Howl({
+			  			src: ['sounds/wipe.mp3']
+					}),
+					color: '#2980b9'
+				},
+
+				n: {
+					sound: new Howl({
+						src: ['sounds/zig-zag.mp3']
+					}),
+					color: '#8e44ad'
+				},
+
+				m: {
+					sound: new Howl({
+			  			src: ['sounds/moon.mp3']
+					}),
+					color: '#2c3e50'
+				}
+			}
+
+
+			var shapes = [];
+
+			//Pressing a key will initiate the following actions
+			function onKeyDown(event) {
+				$("#instruction").fadeOut(250);
+				
+				var object;
+				var maxPoint = new Point(view.size.width, view.size.height);	//maxPoint according to screen width & height
+				var randomPoint = maxPoint * Point.random();					//any point within the screen
+				
+				if(keyData[event.key]){
+					var letter = event.key;
+
+					if (letter.match(/^(a|b|c|d|e)$/)) {							
+	   					object = new Path.Circle(randomPoint, 150);					//circle
+					}
+					else if(letter.match(/^(f|g|h|i|j)$/)){							
+						object = new Path.RegularPolygon(randomPoint, 3, 300);		//triangle
+					}
+					else if(letter.match(/^(k|l|m|n|o)$/)){						
+						object = new Path.RegularPolygon(randomPoint, 4, 300);		//square
+					}
+					else if(letter.match(/^(p|q|r|s|t)$/)){
+						object = new Path.RegularPolygon(randomPoint, 5, 300);		//pentagon
+					}	
+					else{
+						object = new Path.RegularPolygon(randomPoint, 6, 300);		//hexagon
+					}
+					
+					object.strokeColor = keyData[event.key].color;
+					object.strokeWidth = "5";
+					keyData[event.key].sound.play();
+					shapes.push(object);					
+				}
+			}
+
+
+			//Changes every frame
+			function onFrame(event){
+				for(var i=0; i<shapes.length; i++){
+					shapes[i].strokeColor.hue += 2;
+					shapes[i].rotate(3);
+					shapes[i].scale(0.95);
+
+					if(shapes[i].area < 1){
+						shapes[i].remove();			//remove the object from canvas, since it still exists after scaling down though unseen
+						shapes.splice(i, 1);		//remove current object from array
+					}
+				}
+			}
+		</script>
+		
+	</head>
+
+	<body>
+		<canvas id="myCanvas" resize></canvas>
+		<div id="instruction">Press any key from the alphabet to start.</div>
+	</body>
+</html>

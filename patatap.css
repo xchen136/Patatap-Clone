@@ -1,0 +1,26 @@
+
+
+html, body{
+	margin: 0 auto;
+	height: 100%;
+}
+
+
+canvas{
+	width: 100%;
+	background-image: url("img/RedSunset.jpg");
+}
+
+
+#instruction{
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 25px;
+	position: fixed;
+	top: 40%;
+	text-align: center;
+	width: 100%;
+	color: white;
+}
+
+
+ 
