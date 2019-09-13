@@ -1,4 +1,6 @@
 # Patatap-Clone
+[View Application](http://xiaomin-chen.com/coding-project/patatap-clone/patatap.html)
+
 Tech Stack: HTML, CSS, jQuery, Paper.js, Howler.js
 
 When a letter key is pressed, the assigned shape will appear in a random location.
